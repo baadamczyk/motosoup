@@ -7,14 +7,14 @@ assignees: baadamczyk
 
 ---
 
-**Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
+**Summary**
+Clear description or/and business justification of what the feature is about.
 
-**Describe the solution you'd like**
-A clear and concise description of what you want to happen.
+**Details**
+If applicapable, detailed information regarding things to be considered, requirements etc.
 
-**Describe alternatives you've considered**
-A clear and concise description of any alternative solutions or features you've considered.
+**Acceptance criteria**
+Precise and detailed conditions under which a feature request is considered to be completed.
 
 **Additional context**
 Add any other context or screenshots about the feature request here.
