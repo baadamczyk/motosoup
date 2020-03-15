@@ -35,4 +35,4 @@ jobs:
     - stage: "version_number_upgrade"
       name: "Version Number Upgrade"
       script: bash .scripts/version_number_upgrade.sh
-      if: branch = master
+      # if: branch = master
