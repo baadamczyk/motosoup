@@ -2,7 +2,7 @@
 name: Task
 about: Do something that is not strictly related to development
 title: ''
-labels: ''
+labels: task
 assignees: baadamczyk
 
 ---
