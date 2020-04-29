@@ -7,16 +7,15 @@ cache:
   directories:
   - $HOME/.m2
 
-sudo: required
 dist: trusty
 
 env:
   global:
+    - APPLICATION_NAME=motosoup
     - VERSION_MAJOR_NUMBER=0
     - VERSION_MINOR_NUMBER=1
     - VERSION_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
-    - VERSION_BUILD_TYPE="SNAPSHOT"
-    - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER-$VERSION_BUILD_TYPE"
+    - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
 
 
 # addons:
@@ -35,4 +34,8 @@ jobs:
     - stage: "version_number_upgrade"
       name: "Version Number Upgrade"
       script: bash .scripts/version_number_upgrade.sh
+      if: branch = master
+    - stage: deploy_release
+      name: "Deploy new release"
+      script: bash .scripts/deploy.sh
       if: branch = master
