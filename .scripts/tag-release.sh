@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+sh prepare-git.sh
+
 echo ">>> Tagging new release"
 
 export CURRENT_COMMIT=$(git rev-parse --short $TRAVIS_COMMIT)
