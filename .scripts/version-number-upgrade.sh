@@ -9,13 +9,12 @@ if [ $TRAVIS_PULL_REQUEST = "false" ]; then
 
   echo ">>> Setting new version number"
   # Set new version in POM
-  mvn versions:set -DnewVersion=$APPLICATION_VERSION 
-  mvn versions:commit 
+  mvn versions:set -q -B -DnewVersion=$APPLICATION_VERSION 
+  mvn versions:commit -q -B
 
   #Set new version in application properties
   newAppVersion=$APPLICATION_VERSION
   sed -i "s/\(motosoup\.version.number=\).*\$/\1${newAppVersion}/" $MAIN_PROPERTY_FILE_REF
-  cat src/main/resources/application.properties
 
   echo ">>> Pushing changes back to repository..."
   git add -A
