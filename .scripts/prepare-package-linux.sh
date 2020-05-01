@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .scripts/var.sh
+. .scripts/var.sh
 
 echo "Creating Linux redistributable package..."
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-sh prepare-git.sh
+sh .scripts/prepare-git.sh
 
 echo ">>> Tagging new release"
 

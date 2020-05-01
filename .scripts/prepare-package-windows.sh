@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source .scripts/var.sh
+. .scripts/var.sh
 
 echo ">>> Creating Win32 redistributable package..."
 
@@ -13,6 +13,7 @@ cp executables/$WIN32_RUN_SCRIPT $SOURCEDIR
 echo ">>> Creating redistributable ZIP package..."
 cd $SOURCEDIR
 zip -r "$APPLICATION_NAME-$APPLICATION_VERSION-$WIN32_ARCHIVE_SUFFIX.zip" *
+
 
 cd ../..
 mv $SOURCEDIR/"$APPLICATION_NAME-$APPLICATION_VERSION-$WIN32_ARCHIVE_SUFFIX.zip" $PACKAGEDIR
