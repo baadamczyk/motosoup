@@ -2,15 +2,11 @@
 
 source .scripts/var.sh
 
-# TODO: DELETE THIS BEFORE PUSH
-TRAVIS_BRANCH=development
-
 echo ">>> Pulling version-updated codebase..."
 git pull origin $TRAVIS_BRANCH
 
 echo ">>> Building JAR package..."
-# TODO: UNCOMMENT BEFORE PUSH
-# mvn clean package -Pproduction -DskipTests
+ mvn clean package -Pproduction -DskipTests
 
 echo ">>> Creating deployment workdir..."
 if [ -d $WORKDIR ]; then
@@ -21,7 +17,7 @@ mkdir $SOURCEDIR
 
 echo ">>> Copying JAR file..."
 mkdir $SOURCEDIR/bin
-cp target/MotoSoup.jar $SOURCEDIR/bin/MotoSoup.jar
+cp target/$JAR_NAMEgs $SOURCEDIR/bin/$JAR_NAME
 
 
 echo ">>> Creating package dir..."
