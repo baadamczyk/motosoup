@@ -6,7 +6,7 @@ echo ">>> Pulling version-updated codebase..."
 git pull origin $TRAVIS_BRANCH
 
 echo ">>> Building JAR package..."
- mvn clean package -q -B -Pproduction -DskipTests
+ mvn clean package -ntp -q -B -Pproduction -DskipTests
 
 echo ">>> Creating deployment workdir..."
 if [ -d $WORKDIR ]; then
@@ -18,7 +18,6 @@ mkdir $SOURCEDIR
 echo ">>> Copying JAR file..."
 mkdir $SOURCEDIR/bin
 cp target/$JAR_NAME $SOURCEDIR/bin/$JAR_NAME
-
 
 echo ">>> Creating package dir..."
 mkdir $PACKAGEDIR

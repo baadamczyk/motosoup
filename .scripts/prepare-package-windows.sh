@@ -3,7 +3,6 @@
 . .scripts/var.sh
 
 echo ">>> Creating Win32 redistributable package..."
-
 echo ">>> Copying run executable..."
 if [ -f "$SOURCEDIR/$LINUX_RUN_SCRIPT" ]; then
     rm "$SOURCEDIR/$LINUX_RUN_SCRIPT"

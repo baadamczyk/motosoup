@@ -40,7 +40,7 @@ jobs:
       script: 
         - bash .scripts/build-binaries.sh
         - bash .scripts/tag-release.sh
-        # - TRAVIS_TAG=$APPLICATION_NAME-$APPLICATION_VERSION
+        - TRAVIS_TAG=$APPLICATION_NAME-$APPLICATION_VERSION
       deploy:
         provider: releases
         api_key: $GITHUB_TOKEN
