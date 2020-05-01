@@ -3,7 +3,7 @@
     <groupId>pl.baadamczyk.motosoup</groupId>
     <artifactId>motosoup</artifactId>
     <name>MotoSoup</name>
-    <version>0.1.36</version>
+    <version>0.1.37</version>
     <packaging>jar</packaging>
 
     <properties>
