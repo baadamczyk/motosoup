@@ -30,9 +30,9 @@ env:
 
 jobs:
   include:
-    - stage: "Build And Verify"
-      script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent
-      # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
+    # - stage: "Build And Verify"
+    #   script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent
+    #   # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: branch = env(DEPLOYMENT_BRANCH)
