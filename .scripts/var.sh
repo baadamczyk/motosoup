@@ -8,3 +8,4 @@ WIN32_RUN_SCRIPT="MotoSoup.bat"
 LINUX_RUN_SCRIPT="MotoSoup.sh"
 WIN32_ARCHIVE_SUFFIX=windows
 LINUX_ARCHIVE_SUFFIX=linux
+MAIN_PROPERTY_FILE_REF=src/main/resources/application.properties
