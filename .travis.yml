@@ -46,7 +46,8 @@ jobs:
         api_key: $GITHUB_TOKEN
         skip_cleanup: true
         file_glob: true
-        file: env(PACKAGEDIR)/*
+        file: 
+          - pom.xml
         on:
           tags: true  
           all_branches: true
