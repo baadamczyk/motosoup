@@ -8,14 +8,17 @@ cache:
   - $HOME/.m2
 
 dist: trusty
-
+# TODO: Change $DEPLOYMENT_BRANCH after tests
 env:
   global:
-    - APPLICATION_NAME=motosoup
+    - DEPLOYMENT_BRANCH="setup-cd-flow"
+    - APPLICATION_NAME="motosoup"
     - VERSION_MAJOR_NUMBER=0
     - VERSION_MINOR_NUMBER=1
     - VERSION_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
     - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
+    - WORKDIR="workdir"
+    - PACKAGEDIR="$WORKDIR/package"
 
 
 # addons:
@@ -31,11 +34,25 @@ jobs:
       name: "Build And Verify"
       script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
       # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
+    - stage: "prepare_git"
+      name: "Prepare GIT"
+      script: bash .scripts/prepare-git.sh
+      if: branch = $DEPLOYMENT_BRANCH
     - stage: "version_number_upgrade"
       name: "Version Number Upgrade"
-      script: bash .scripts/version_number_upgrade.sh
-      if: branch = master
+      script: bash .scripts/version-number-upgrade.sh
+      if: branch = $DEPLOYMENT_BRANCH
     - stage: deploy_release
       name: "Deploy new release"
-      script: bash .scripts/deploy.sh
-      if: branch = master
+      script: 
+        - bash .scripts/build-binaries.sh
+        - bash .scripts/tag-release.sh
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        skip_cleanup: true
+        file_glob: true
+        file: $PACKAGEDIR/*
+        on:
+          tags: true  
+      if: branch = $DEPLOYMENT_BRANCH
