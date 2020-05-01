@@ -46,9 +46,7 @@ jobs:
         api_key: $GITHUB_TOKEN
         skip_cleanup: true
         file_glob: true
-        file: 
-          - env(PACKAGEDIR)/$APPLICATION_NAME-$APPLICATION_VERSION-windows.zip
-          - env(PACKAGEDIR)/package/$APPLICATION_NAME-$APPLICATION_VERSION-linux.tar.gz
+        file: workdir/package/*
         on:
           tags: true  
           all_branches: true
