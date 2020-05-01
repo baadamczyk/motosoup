@@ -33,8 +33,7 @@ jobs:
     - stage: "Build And Verify"
       script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent
       # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
-    - stage: "prepare_git"
-      name: "Prepare GIT"
+    - stage: "Prepare GIT"
       script: bash .scripts/prepare-git.sh
       if: branch = env(DEPLOYMENT_BRANCH)
     - stage: "Version Number Upgrade"
