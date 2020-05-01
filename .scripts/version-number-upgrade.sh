@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+sh .scripts/prepare-git.sh
 
 if [ $TRAVIS_PULL_REQUEST = "false" ]; then
   echo ">>> Upgrading Version Number. New Version: $APPLICATION_VERSION"
