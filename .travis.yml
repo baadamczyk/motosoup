@@ -47,8 +47,8 @@ jobs:
         skip_cleanup: true
         file_glob: true
         file: 
-          - workdir/package/$APPLICATION_NAME-$APPLICATION_VERSION-windows.zip
-          - workdir/package/$APPLICATION_NAME-$APPLICATION_VERSION-linux.tar.gz
+          - env(PACKAGEDIR)/$APPLICATION_NAME-$APPLICATION_VERSION-windows.zip
+          - env(PACKAGEDIR)/package/$APPLICATION_NAME-$APPLICATION_VERSION-linux.tar.gz
         on:
           tags: true  
           all_branches: true
