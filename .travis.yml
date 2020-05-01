@@ -45,7 +45,7 @@ jobs:
         api_key: $GITHUB_TOKEN
         skip_cleanup: true
         file_glob: true
-        file: $PACKAGEDIR/*
+        file: env(PACKAGEDIR)/*
         on:
           tags: true  
       if: branch = env(DEPLOYMENT_BRANCH)
