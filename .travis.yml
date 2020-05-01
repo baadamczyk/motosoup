@@ -1,22 +1,24 @@
 language: java
 
 jdk:
-- oraclejdk13
+- oraclejdk11
 
 cache:
   directories:
   - $HOME/.m2
 
-sudo: required
 dist: trusty
-
+# TODO: Change $DEPLOYMENT_BRANCH after tests
 env:
   global:
+    - DEPLOYMENT_BRANCH="development"
+    - APPLICATION_NAME="motosoup"
     - VERSION_MAJOR_NUMBER=0
     - VERSION_MINOR_NUMBER=1
     - VERSION_BUILD_NUMBER=$TRAVIS_BUILD_NUMBER
-    - VERSION_BUILD_TYPE="SNAPSHOT"
-    - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER-$VERSION_BUILD_TYPE"
+    - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
+    - WORKDIR="workdir"
+    - PACKAGEDIR="$WORKDIR/package"
 
 
 # addons:
@@ -25,14 +27,31 @@ env:
 #     token:
 #       secure: "$SONAR_TOKEN"
 
-
+install: mvn dependency:resolve
 jobs:
   include:
-    - stage: "build_and_verify"
-      name: "Build And Verify"
-      script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
-      # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
-    - stage: "version_number_upgrade"
-      name: "Version Number Upgrade"
-      script: bash .scripts/version_number_upgrade.sh
-      if: branch = master
+    - stage: "Build And Verify"
+      script: mvn clean test -q org.jacoco:jacoco-maven-plugin:prepare-agent
+      # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
+    - stage: "Version Number Upgrade"
+      script: bash .scripts/version-number-upgrade.sh
+      if: 
+        - env(TRAVIS_PULL_REQUEST) = false
+        - branch = env(DEPLOYMENT_BRANCH)
+    - stage: "Deploy New Release"
+      script: 
+        - bash .scripts/build-binaries.sh
+        - bash .scripts/tag-release.sh
+        - TRAVIS_TAG=$APPLICATION_NAME-$APPLICATION_VERSION
+      deploy:
+        provider: releases
+        api_key: $GITHUB_TOKEN
+        skip_cleanup: true
+        file_glob: true
+        file: $PACKAGEDIR/*
+        on:
+          tags: true  
+          all_branches: true
+      if: 
+        - env(TRAVIS_PULL_REQUEST) = false
+        - branch = env(DEPLOYMENT_BRANCH)
