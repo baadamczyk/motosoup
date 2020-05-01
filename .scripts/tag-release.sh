@@ -9,3 +9,5 @@ git tag $APPLICATION_NAME-$APPLICATION_VERSION -m "Deployed new stable release"
 
 echo ">> PUSHING TAGS"
 git push origin --tags
+
+export TRAVIS_TAG=$APPLICATION_NAME-$APPLICATION_VERSION
