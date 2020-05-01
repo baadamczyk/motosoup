@@ -17,7 +17,7 @@ mkdir $SOURCEDIR
 
 echo ">>> Copying JAR file..."
 mkdir $SOURCEDIR/bin
-cp target/$JAR_NAMEgs $SOURCEDIR/bin/$JAR_NAME
+cp target/$JAR_NAME $SOURCEDIR/bin/$JAR_NAME
 
 
 echo ">>> Creating package dir..."

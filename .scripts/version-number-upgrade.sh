@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 sh .scripts/prepare-git.sh
 
-sh prepare-git.sh
+sh .scripts/prepare-git.sh
 
 if [ $TRAVIS_PULL_REQUEST = "false" ]; then
   echo ">>> Preparing to elevate version number. New Version: $APPLICATION_VERSION"
@@ -15,7 +15,8 @@ if [ $TRAVIS_PULL_REQUEST = "false" ]; then
 
   #Set new version in application properties
   newAppVersion=$APPLICATION_VERSION
-  sed -i "s/\(motosoup\.version-number=\).*\$/\1${newAppVersion}/" src/main/resources/application.properties
+  sed -i "s/\(motosoup\.version-number=\).*\$/\1${newAppVersion}/" /src/main/resources/application.properties
+  cat /src/main/resources/application.properties
 
   echo ">>> Pushing changes back to repository..."
   git status
