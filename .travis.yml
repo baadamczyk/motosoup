@@ -31,8 +31,8 @@ install: mvn dependency:resolve
 jobs:
   include:
     - stage: "Build And Verify"
-      script: mvn clean -q -B -V org.jacoco:jacoco-maven-plugin:prepare-agent
-    #   # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
+      script: mvn clean test -q -B -V org.jacoco:jacoco-maven-plugin:prepare-agent
+      # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: branch = env(DEPLOYMENT_BRANCH)
