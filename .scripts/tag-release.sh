@@ -2,6 +2,7 @@
 
 sh .scripts/prepare-git.sh
 
+ls -a $PACKAGEDIR
 echo ">>> Tagging new release"
 
 export CURRENT_COMMIT=$(git rev-parse --short $TRAVIS_COMMIT)

@@ -6,7 +6,7 @@ echo ">>> Pulling version-updated codebase..."
 git pull origin $TRAVIS_BRANCH
 
 echo ">>> Building JAR package..."
- mvn clean package -q -Pproduction -DskipTests
+ mvn clean package -q -B -Pproduction -DskipTests
 
 echo ">>> Creating deployment workdir..."
 if [ -d $WORKDIR ]; then
