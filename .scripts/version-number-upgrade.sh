@@ -15,6 +15,7 @@ if [ $TRAVIS_PULL_REQUEST = "false" ]; then
 
   #Set new version in application properties
   newAppVersion=$APPLICATION_VERSION
+  ls -a
   sed -i "s/\(motosoup\.version-number=\).*\$/\1${newAppVersion}/" /src/main/resources/application.properties
   cat /src/main/resources/application.properties
 
