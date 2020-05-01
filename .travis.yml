@@ -38,7 +38,6 @@ jobs:
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: 
-        - $TRAVIS_EVENT_TYPE = push
         - branch = env(DEPLOYMENT_BRANCH)
     - stage: "Deploy New Release"
       script: 
@@ -55,5 +54,4 @@ jobs:
           tags: true  
           all_branches: true
       if: 
-        - $TRAVIS_EVENT_TYPE = push
         - branch = env(DEPLOYMENT_BRANCH)
