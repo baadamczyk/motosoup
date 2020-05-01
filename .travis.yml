@@ -48,4 +48,5 @@ jobs:
         file: env(PACKAGEDIR)/*
         on:
           tags: true  
+          all_branches: true
       if: branch = env(DEPLOYMENT_BRANCH)
