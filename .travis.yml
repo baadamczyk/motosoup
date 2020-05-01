@@ -32,16 +32,16 @@ jobs:
   include:
     - stage: "build_and_verify"
       name: "Build And Verify"
-      script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install
+      script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent
       # script: mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "prepare_git"
       name: "Prepare GIT"
       script: bash .scripts/prepare-git.sh
-      if: branch = $DEPLOYMENT_BRANCH
+      if: branch = env(DEPLOYMENT_BRANCH)
     - stage: "version_number_upgrade"
       name: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
-      if: branch = $DEPLOYMENT_BRANCH
+      if: branch = env(DEPLOYMENT_BRANCH)
     - stage: deploy_release
       name: "Deploy new release"
       script: 
@@ -55,4 +55,4 @@ jobs:
         file: $PACKAGEDIR/*
         on:
           tags: true  
-      if: branch = $DEPLOYMENT_BRANCH
+      if: branch = env(DEPLOYMENT_BRANCH)
