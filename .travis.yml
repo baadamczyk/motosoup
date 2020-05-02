@@ -38,8 +38,7 @@ jobs:
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: #RESTRICT ONLY TO PUSH BUILDS!
-        - $TRAVIS_PULL_REQUEST = false
-        # - branch = env(DEPLOYMENT_BRANCH)
+        - branch = env(DEPLOYMENT_BRANCH)
     - stage: "Deploy New Release"
       script: 
         - bash .scripts/build-binaries.sh
@@ -55,5 +54,4 @@ jobs:
           tags: true  
           all_branches: true
       if: #RESTRICT ONLY TO PUSH BUILDS!
-        - env($TRAVIS_EVENT_TYPE) IS "push"
         - branch = env(DEPLOYMENT_BRANCH)
