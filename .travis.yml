@@ -36,7 +36,7 @@ jobs:
       # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
-      if: branch = env(DEPLOYMENT_BRANCH) AND $TRAVIS_EVENT_TYPE = push
+      if: branch = env(DEPLOYMENT_BRANCH) AND $TRAVIS_EVENT_TYPE = pull_request
     - stage: "Deploy New Release"
       script: 
         - bash .scripts/build-binaries.sh
