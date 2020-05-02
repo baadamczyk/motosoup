@@ -19,7 +19,7 @@ env:
     - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
     - WORKDIR="workdir"
     - PACKAGEDIR="$WORKDIR/package"
-    - TESTENV=false
+    - TESTENV=TRAVIS_EVENT_TYPE
 
 
 # addons:
@@ -28,7 +28,7 @@ env:
 #     token:
 #       secure: "$SONAR_TOKEN"
 
-before_install: if [ $TRAVIS_PULL_REQUEST = "false" ]; then $TESTENV = true fi
+before_install: echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> $TESTENV"
 install: mvn dependency:resolve
 jobs:
   include:
