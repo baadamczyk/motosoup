@@ -28,7 +28,7 @@ env:
 #     token:
 #       secure: "$SONAR_TOKEN"
 
-before_install: echo "$TESTENV"
+before_install: if [ $TRAVIS_PULL_REQUEST = "false" ]; then $TESTENV = true fi
 install: mvn dependency:resolve
 jobs:
   include:
