@@ -28,6 +28,7 @@ env:
 #     token:
 #       secure: "$SONAR_TOKEN"
 
+before_install: echo "$TESTENV"
 install: mvn dependency:resolve
 jobs:
   include:
