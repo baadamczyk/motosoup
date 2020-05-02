@@ -19,9 +19,6 @@ env:
     - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
     - WORKDIR="workdir"
     - PACKAGEDIR="$WORKDIR/package"
-    - TESTENV=$TRAVIS_EVENT_TYPE
-    - TESTENV2=push
-
 
 # addons:
 #   sonarcloud:
@@ -29,7 +26,6 @@ env:
 #     token:
 #       secure: "$SONAR_TOKEN"
 
-before_install: echo ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> $TESTENV"
 install: mvn dependency:resolve
 jobs:
   include:
@@ -39,7 +35,8 @@ jobs:
       # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
-      if: branch = env(DEPLOYMENT_BRANCH) AND type != pull_request
+      if: branch = env(DEPLOYMENT_BRANCH) 
+          AND type != pull_request
     - stage: "Deploy New Release"
       script: 
         - bash .scripts/build-binaries.sh
@@ -54,4 +51,5 @@ jobs:
         on:
           tags: true  
           all_branches: true
-      if: branch = env(DEPLOYMENT_BRANCH) AND env(TRAVIS_EVENT_TYPE) = push
+      if: branch = env(DEPLOYMENT_BRANCH)
+          AND type != pull_request
