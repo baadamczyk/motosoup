@@ -11,7 +11,7 @@ dist: trusty
 # TODO: Change $DEPLOYMENT_BRANCH after tests
 env:
   global:
-    - DEPLOYMENT_BRANCH="development"
+    - DEPLOYMENT_BRANCH="setup-cd-flow"
     - APPLICATION_NAME="motosoup"
     - VERSION_MAJOR_NUMBER=0
     - VERSION_MINOR_NUMBER=1
