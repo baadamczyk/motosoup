@@ -19,7 +19,7 @@ env:
     - APPLICATION_VERSION="$VERSION_MAJOR_NUMBER.$VERSION_MINOR_NUMBER.$VERSION_BUILD_NUMBER"
     - WORKDIR="workdir"
     - PACKAGEDIR="$WORKDIR/package"
-    - TESTENV=true
+    - TESTENV=false
 
 
 # addons:
