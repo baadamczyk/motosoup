@@ -20,7 +20,6 @@ env:
     - WORKDIR="workdir"
     - PACKAGEDIR="$WORKDIR/package"
 
-
 # addons:
 #   sonarcloud:
 #     organization: "baadamczyk-github"
@@ -32,14 +31,12 @@ jobs:
   include:
     - stage: "Build And Verify"
       script: 
-        - echo ">>>>>>>>>>>>>>>>>>>>>>>> e  $TRAVIS_EVENT_TYPE ---- pr $TRAVIS_PULL_REQUEST"
         - mvn clean test -q org.jacoco:jacoco-maven-plugin:prepare-agent
       # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
-      if: 
-        - env(TRAVIS_EVENT_TYPE) IS push
-        - branch = env(DEPLOYMENT_BRANCH)
+      if: branch = env(DEPLOYMENT_BRANCH) 
+          AND type != pull_request
     - stage: "Deploy New Release"
       script: 
         - bash .scripts/build-binaries.sh
@@ -54,6 +51,5 @@ jobs:
         on:
           tags: true  
           all_branches: true
-      if: 
-        - env(TRAVIS_EVENT_TYPE) IS push
-        - branch = env(DEPLOYMENT_BRANCH)
+      if: branch = env(DEPLOYMENT_BRANCH)
+          AND type != pull_request
