@@ -1,5 +1,4 @@
 language: java
-
 jdk:
 - oraclejdk11
 
@@ -7,11 +6,10 @@ cache:
   directories:
   - $HOME/.m2
 
-dist: trusty
-# TODO: Change $DEPLOYMENT_BRANCH after tests
+
 env:
   global:
-    - DEPLOYMENT_BRANCH="development"
+    - DEPLOYMENT_BRANCH="master"
     - APPLICATION_NAME="motosoup"
     - VERSION_MAJOR_NUMBER=0
     - VERSION_MINOR_NUMBER=1
