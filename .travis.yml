@@ -22,7 +22,7 @@ addons:
   sonarcloud:
     organization: "baadamczyk-github"
     token:
-      secure: "$SONAR_TOKEN"
+      secure: "dlqPtTveHPMf/78F6uQ3As0Tnv9u1u1r9zk4zrIt4HguMMBq09VJsgKGoozNs+bIK2bzvvedVGvlWPV874Nf1wWYLR5HJJ63onhnjGUreXvbaa1MFs/36/at6KT5tnCX25oD+Wv7kdJGdT4gt1Mh6lVtuHwGqaEMR6320/VDuvdb2nitm4Eg5cDKki2Xx+WuBgV+wFrw3gU9MVoKCtvRfuA/WQ9b72XL+OM39/1Bn9sAZ8zPJMq+1GfFD0HfepwKex8xBVNe1+sXQRz0A/bPrBrOpsA1WuaaEVU45BRq3hljmks68A5Ntli07ttRAr0poodzDZmfhUCPAK41ZOrwks79YxSa/zWqavGC41uMVlKspe8tnwIDqJTl37T76BIYj5uRAUB2O29Mooq3rm74ChPvkyjIGrJcpQPfUFu3PfRTnt6jM1fEY8iPKZafzRMESYfDtoZpeNqVAJPKtFfFhroGUc9suM+vGGSb2S7i8GLkuPSKZ0kU3lfC5SMbJXRqwbBVd7iXXPcpwSYBZHlgeKoq/NIwixTyv5ZxKYwihgl34q928c2ZfaudDThgFHirfHgswZ0pO/Pzw7QQ4UUOYNeNNGwFr9Ft9z/s7D7PDhyVgg6EE1eXkI1c4qydETm59kU/qbCFuOgF9Trv2MuAyMBUB8kRgk81r1vyq04foQk="
 
 install: mvn dependency:resolve
 jobs:
