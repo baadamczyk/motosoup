@@ -27,10 +27,14 @@ addons:
 install: mvn dependency:resolve
 jobs:
   include:
-    - stage: "Build And Verify"
-      script: 
+    - stage: "Build And Test"
+      script: mvn clean test
+    - stage: "Static Code Analysis"
+      script:
         - mvn clean test jacoco:report sonar:sonar -Pcoverage
         - bash <(curl -Ls https://coverage.codacy.com/get.sh)
+      if: branch = env(DEPLOYMENT_BRANCH) 
+          AND type != pull_request
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: branch = env(DEPLOYMENT_BRANCH) 
