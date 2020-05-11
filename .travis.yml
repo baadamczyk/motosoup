@@ -29,7 +29,7 @@ jobs:
   include:
     - stage: "Build And Verify"
       script: 
-        - mvn clean test sonar:sonar -Pcoverage
+        - mvn clean test jacoco:report sonar:sonar -Pcoverage
         - bash <(curl -Ls https://coverage.codacy.com/get.sh)
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
