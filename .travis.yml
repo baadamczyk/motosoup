@@ -18,19 +18,19 @@ env:
     - WORKDIR="workdir"
     - PACKAGEDIR="$WORKDIR/package"
 
-# addons:
-#   sonarcloud:
-#     organization: "baadamczyk-github"
-#     token:
-#       secure: "$SONAR_TOKEN"
+addons:
+  sonarcloud:
+    organization: "baadamczyk-github"
+    token:
+      secure: "$SONAR_TOKEN"
 
 install: mvn dependency:resolve
 jobs:
   include:
     - stage: "Build And Verify"
       script: 
-        - mvn clean test -q org.jacoco:jacoco-maven-plugin:prepare-agent
-      # script: mvn clean -B org.jacoco:jacoco-maven-plugin:prepare-agent install -DcheckCodeCoverage sonar:sonar
+        - mvn clean test sonar:sonar -Pcoverage
+        - bash <(curl -Ls https://coverage.codacy.com/get.sh)
     - stage: "Version Number Upgrade"
       script: bash .scripts/version-number-upgrade.sh
       if: branch = env(DEPLOYMENT_BRANCH) 
